@@ -3,54 +3,53 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ডাউনলোড | ZAIYAN Store</title>
     <link rel="stylesheet" href="style.css">
+    <style>
+        .dl-container { padding: 40px 20px; text-align: center; }
+        .icon-large { width: 100px; height: 100px; border-radius: 20px; margin-bottom: 20px; box-shadow: 0 0 20px var(--primary-red); }
+        .timer-circle { 
+            width: 120px; height: 120px; border: 4px solid var(--primary-red); 
+            border-radius: 50%; margin: 30px auto; display: flex; 
+            align-items: center; justify-content: center; font-size: 40px; font-weight: bold;
+            box-shadow: inset 0 0 15px var(--primary-red);
+        }
+        .btn-red { 
+            background: var(--primary-red); color: white; padding: 18px; 
+            border-radius: 12px; border: none; width: 100%; font-size: 18px; font-weight: bold;
+            box-shadow: 0 5px 15px rgba(255,0,0,0.4);
+        }
+    </style>
 </head>
 <body>
-    <div class="dl-page">
-        <a href="index.html" class="back-btn">← ফিরে যান</a>
+    <div class="dl-container">
+        <img id="appIcon" class="icon-large" src="">
+        <h1 id="appName" style="font-size: 24px;"></h1>
+        <p id="appDetails" style="opacity: 0.7; margin-top: 10px;"></p>
         
-        <div class="dl-header">
-            <img id="appIcon" src="" alt="">
-            <div class="dl-meta">
-                <h1 id="appName"></h1>
-                <p id="appVer"></p>
-                <p id="appSize" style="color: #01875f; font-weight: bold;"></p>
-            </div>
+        <div id="timerBox">
+            <div class="timer-circle" id="count">10</div>
+            <p>আপনার প্রিমিয়াম ফাইলটি এনক্রিপ্ট হচ্ছে...</p>
         </div>
 
-        <div class="dl-card">
-            <p>আপনার ফাইলটি প্রস্তুত হচ্ছে...</p>
-            <h2 id="timer">10</h2>
-            <button id="mainBtn" class="final-dl" style="display: none;" onclick="startDl()">এখনই ডাউনলোড করুন (APK)</button>
-        </div>
+        <button id="dlBtn" class="btn-red" style="display: none;" onclick="location.href=params.get('link')">এখনই ডাউনলোড করুন</button>
     </div>
 
     <script>
         const params = new URLSearchParams(window.location.search);
         document.getElementById('appName').innerText = params.get('name');
-        document.getElementById('appVer').innerText = "ভার্সন: " + params.get('ver');
-        document.getElementById('appSize').innerText = "সাইজ: " + params.get('size');
+        document.getElementById('appDetails').innerText = params.get('ver') + " | " + params.get('size');
         document.getElementById('appIcon').src = params.get('icon');
 
         let time = 10;
-        const timerTxt = document.getElementById('timer');
-        const mainBtn = document.getElementById('mainBtn');
-
-        const cd = setInterval(() => {
+        const interval = setInterval(() => {
             time--;
-            timerTxt.innerText = time;
+            document.getElementById('count').innerText = time;
             if(time <= 0) {
-                clearInterval(cd);
-                timerTxt.style.display = 'none';
-                mainBtn.style.display = 'block';
+                clearInterval(interval);
+                document.getElementById('timerBox').style.display = 'none';
+                document.getElementById('dlBtn').style.display = 'block';
             }
         }, 1000);
-
-        function startDl() {
-            const link = params.get('link');
-            window.location.href = link;
-        }
     </script>
 </body>
 </html>
