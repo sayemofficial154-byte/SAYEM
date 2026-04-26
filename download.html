@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ডাউনলোড | ZAIYAN Store</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="dl-page">
+        <a href="index.html" class="back-btn">← ফিরে যান</a>
+        
+        <div class="dl-header">
+            <img id="appIcon" src="" alt="">
+            <div class="dl-meta">
+                <h1 id="appName"></h1>
+                <p id="appVer"></p>
+                <p id="appSize" style="color: #01875f; font-weight: bold;"></p>
+            </div>
+        </div>
+
+        <div class="dl-card">
+            <p>আপনার ফাইলটি প্রস্তুত হচ্ছে...</p>
+            <h2 id="timer">10</h2>
+            <button id="mainBtn" class="final-dl" style="display: none;" onclick="startDl()">এখনই ডাউনলোড করুন (APK)</button>
+        </div>
+    </div>
+
+    <script>
+        const params = new URLSearchParams(window.location.search);
+        document.getElementById('appName').innerText = params.get('name');
+        document.getElementById('appVer').innerText = "ভার্সন: " + params.get('ver');
+        document.getElementById('appSize').innerText = "সাইজ: " + params.get('size');
+        document.getElementById('appIcon').src = params.get('icon');
+
+        let time = 10;
+        const timerTxt = document.getElementById('timer');
+        const mainBtn = document.getElementById('mainBtn');
+
+        const cd = setInterval(() => {
+            time--;
+            timerTxt.innerText = time;
+            if(time <= 0) {
+                clearInterval(cd);
+                timerTxt.style.display = 'none';
+                mainBtn.style.display = 'block';
+            }
+        }, 1000);
+
+        function startDl() {
+            const link = params.get('link');
+            window.location.href = link;
+        }
+    </script>
+</body>
+</html>
