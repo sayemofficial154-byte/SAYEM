@@ -3,238 +3,71 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Premium APK</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800;900&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --primary-gradient: linear-gradient(135deg, #8b5cf6 0%, #ec4899 50%, #06b6d4 100%);
-            --app-gradient: linear-gradient(135deg, #10b981 0%, #059669 100%);
-            --upload-gradient: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
-            --dark-bg: linear-gradient(135deg, #0a0a1a 0%, #1a0d2e 50%, #2a1b4d 100%);
-            --glass-primary: rgba(255,255,255,0.08);
-            --glass-border: rgba(255,255,255,0.12);
-            --neon-glow: 0 0 30px rgba(139, 92, 246, 0.6);
-        }
-        * { font-family: 'Poppins', sans-serif; }
-        body { 
-            background: var(--dark-bg); 
-            color: white; 
-            overflow-x: hidden;
-            position: relative;
-        }
-        body::before {
-            content: '';
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: 
-                radial-gradient(circle at 10% 20%, rgba(139,92,246,0.2) 0%, transparent 50%),
-                radial-gradient(circle at 90% 80%, rgba(16,185,129,0.2) 0%, transparent 50%),
-                radial-gradient(circle at 50% 50%, rgba(236,72,153,0.15) 0%, transparent 70%);
-            animation: bgFloat 25s ease-in-out infinite;
-            z-index: -2;
-        }
-        @keyframes bgFloat {
-            0%, 100% { transform: scale(1) rotate(0deg); }
-            33% { transform: scale(1.05) rotate(1deg); }
-            66% { transform: scale(0.98) rotate(-1deg); }
-        }
-        .glass-effect {
-            backdrop-filter: blur(30px);
-            background: var(--glass-primary);
-            border: 1px solid var(--glass-border);
-            box-shadow: var(--neon-glow), 0 30px 60px rgba(0,0,0,0.4);
-        }
-        .app-card-hover {
-            transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
-        }
-        .app-card-hover:hover {
-            transform: translateY(-20px) scale(1.05);
-            box-shadow: 0 50px 100px rgba(0,0,0,0.6), var(--neon-glow);
-        }
-        .fade-in-up {
-            opacity: 0; transform: translateY(80px);
-            transition: all 1.2s cubic-bezier(0.23, 1, 0.32, 1);
-        }
-        .fade-in-up.visible { opacity: 1; transform: translateY(0); }
-        .shimmer-effect {
-            background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.4) 50%, transparent 100%);
-            background-size: 400% 100%; animation: shimmer 2.5s infinite;
-        }
-        @keyframes shimmer { 0% { background-position: -400% 0; } 100% { background-position: 400% 0; } }
-        .neon-text { 
-            background: var(--primary-gradient); 
-            -webkit-background-clip: text; 
-            background-clip: text; 
-            -webkit-text-fill-color: transparent;
-            filter: drop-shadow(0 0 10px rgba(139,92,246,0.5));
-        }
-        .upload-zone {
-            border: 3px dashed rgba(255,255,255,0.3);
-            transition: all 0.4s ease;
-        }
-        .upload-zone.dragover {
-            border-color: #10b981; background: rgba(16,185,129,0.1);
-            transform: scale(1.02);
-        }
-        .floating-particles {
-            position: absolute; width: 4px; height: 4px; background: var(--primary-gradient);
-            border-radius: 50%; animation: floatParticle 15s linear infinite;
-        }
-        @keyframes floatParticle {
-            0% { transform: translateY(100vh) scale(0); opacity: 0; }
-            10% { opacity: 1; }
-            90% { opacity: 1; }
-            100% { transform: translateY(-100px) scale(1); opacity: 0; }
-        }
-        .size-badge { 
-            background: var(--app-gradient); 
-            box-shadow: 0 4px 15px rgba(16,185,129,0.4);
-        }
-        .rating-badge { 
-            background: linear-gradient(135deg, #fbbf24, #f59e0b); 
-            box-shadow: 0 4px 15px rgba(245,158,11,0.4);
-        }
-        @media (max-width: 768px) {
-            .app-card-hover:hover { transform: translateY(-10px) scale(1.02); }
-        }
-    </style>
+    <title>ZAIYAN Play Store | Premium APK</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
-    <!-- Floating Particles Background -->
-    <div id="particles"></div>
 
-    <!-- Enhanced Navigation -->
-    <nav class="fixed top-0 w-full z-50 glass-effect py-5 px-8 transition-all duration-500 backdrop-blur-xl">
-        <div class="max-w-7xl mx-auto flex items-center justify-between">
-            <a href="#home" class="flex items-center space-x-4 group">
-                <div class="w-14 h-14 bg-gradient-to-br from-purple-500 to-pink-500 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-all duration-300 shadow-2xl">
-                    <i class="fas fa-mobile-alt text-2xl text-white"></i>
-                </div>
-                <div>
-                    <h1 class="text-3xl font-black neon-text tracking-tight">APK Hub</h1>
-                    <span class="text-xs text-purple-300 font-medium">Premium 2026</span>
-                </div>
-            </a>
+<header>
+    <div class="search-box">
+        <i class="fas fa-search"></i>
+        <input type="text" id="searchInput" placeholder="অ্যাপ ও গেম খুঁজুন..." onkeyup="filterApps()">
+    </div>
+</header>
 
-            <ul class="hidden lg:flex items-center space-x-12 text-lg font-semibold">
-                <li><a href="#home" class="hover:text-purple-300 transition-all duration-300 relative pb-2 after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-gradient-to-r after:from-purple-400 after:to-pink-400 after:transition-all after:duration-300 hover:after:w-full">হোম</a></li>
-                <li><a href="#apps" class="hover:text-green-300 ...">অ্যাপস</a></li>
-                <li><a href="#categories" class="hover:text-orange-300 ...">ক্যাটাগরি</a></li>
-                <li><a href="#trending" class="hover:text-blue-300 ...">ট্রেন্ডিং</a></li>
-                <li><a href="#upload" class="hover:text-yellow-300 ...">আপলোড</a></li>
-            </ul>
+<div class="tabs">
+    <button class="active">সব</button>
+    <button>গেমস</button>
+    <button>অ্যাপস</button>
+    <button>নতুন</button>
+</div>
 
-            <div class="flex items-center space-x-6">
-                <div class="relative">
-                    <button id="searchToggle" class="p-3 glass-effect rounded-2xl hover:bg-white/20 transition-all glass-effect">
-                        <i class="fas fa-search text-xl"></i>
-                    </button>
-                    <div id="searchBox" class="absolute top-full right-0 mt-2 w-80 glass-effect rounded-2xl p-4 opacity-0 invisible scale-95 transition-all duration-300 origin-top-right hidden">
-                        <input type="text" placeholder="অ্যাপ খুঁজুন... (Pentest: XSS test)" class="w-full bg-transparent border-none outline-none text-white placeholder-gray-400 text-lg">
-                        <div class="mt-3 space-y-2 text-sm">
-                            <a href="#" class="block hover:text-purple-300">Spotify Premium</a>
-                            <a href="#" class="block hover:text-green-300">Netflix Mod</a>
-                        </div>
-                    </div>
-                </div>
-                <button class="glass-effect px-8 py-3 rounded-2xl font-bold text-lg border-2 border-white/30 hover:border-white/60 hover-lift transition-all backdrop-blur-sm">
-                    <i class="fas fa-user mr-2"></i>লগইন
-                </button>
-                <button class="bg-gradient-to-r from-green-500 to-emerald-500 hover:from-green-600 hover:to-emerald-600 px-8 py-3 rounded-2xl font-bold text-lg hover-lift shadow-2xl text-white">
-                    <i class="fas fa-upload mr-2"></i>আপলোড
-                </button>
-            </div>
-        </div>
-    </nav>
-
-    <!-- Hero Section - APK Focused -->
-    <section id="home" class="min-h-screen flex items-center justify-center relative pt-32 pb-24 overflow-hidden">
-        <div class="absolute inset-0">
-            <lottie-player src="https://assets3.lottiefiles.com/packages/lf20_uyt09hbk.json" background="transparent" speed="0.7" loop autoplay class="w-full h-full opacity-30"></lottie-player>
-        </div>
+<main class="container">
+    <h2 class="section-title">জনপ্রিয় অ্যাপসমূহ</h2>
+    <div class="app-grid" id="appGrid">
         
-        <div class="max-w-6xl mx-auto text-center px-8 fade-in-up z-10">
-            <div class="glass-effect p-16 lg:p-24 rounded-4xl max-w-5xl mx-auto mb-16 hover-lift">
-                <h1 class="text-7xl lg:text-9xl font-black mb-8 leading-tight">
-                    <span class="block neon-text drop-shadow-2xl">প্রিমিয়াম</span>
-                    <span class="block text-6xl lg:text-7xl bg-gradient-to-r from-green-400 to-emerald-400 bg-clip-text text-transparent drop-shadow-2xl">APK হাব</span>
-                </h1>
-                <p class="text-xl lg:text-2xl mb-12 text-gray-200 max-w-4xl mx-auto leading-relaxed opacity-90">
-                    <strong>২০২৬ এর সেরা মড APK সংগ্রহ</strong><br>
-                    Spotify, Netflix, YouTube Premium, GBWhatsApp সহ ৫০০+ অ্যাপ। 
-                    নিরাপদ ডাউনলোড + ভাইরাস ফ্রি গ্যারান্টি।
-                </p>
-                
-                <div class="flex flex-col lg:flex-row gap-8 justify-center items-center mb-16">
-                    <button class="bg-gradient-to-r from-green-500 via-emerald-500 to-teal-500 hover:from-green-600 hover:via-emerald-600 hover:to-teal-600 px-20 py-8 rounded-3xl font-black text-2xl hover-lift shadow-2xl text-white transform-gpu">
-                        <i class="fas fa-download mr-4 text-xl"></i>৫০+ অ্যাপ ডাউনলোড
-                    </button>
-                    <button class="glass-effect border-3 border-white/40 hover:border-white/70 px-20 py-8 rounded-3xl font-black text-2xl hover-lift backdrop-blur-xl text-white shadow-2xl">
-                        <i class="fas fa-fire mr-4 text-xl"></i>ট্রেন্ডিং দেখুন
-                    </button>
-                </div>
-
-                <!-- Live Stats -->
-                <div class="grid grid-cols-2 lg:grid-cols-5 gap-8 max-w-4xl mx-auto">
-                    <div class="glass-effect p-6 rounded-3xl">
-                        <div class="text-4xl font-black text-green-400 mb-2">৭২৫</div>
-                        <div class="text-sm text-gray-400 uppercase tracking-wider">নতুন APK</div>
-                    </div>
-                    <div class="glass-effect p-6 rounded-3xl">
-                        <div class="text-4xl font-black text-purple-400 mb-2">২৫ক+</div>
-                        <div class="text-sm text-gray-400 uppercase tracking-wider">ডাউনলোড</div>
-                    </div>
-                    <div class="glass-effect p-6 rounded-3xl">
-                        <div class="text-4xl font-black text-orange-400 mb-2">৪.৯</div>
-                        <div class="text-sm text-gray-400 uppercase tracking-wider">রেটিং</div>
-                    </div>
-                    <div class="glass-effect p-6 rounded-3xl">
-                        <div class="text-4xl font-black text-blue-400 mb-2">২৪/৭</div>
-                        <div class="text-sm text-gray-400 uppercase tracking-wider">অনলাইন</div>
-                    </div>
-                    <div class="glass-effect p-6 rounded-3xl">
-                        <div class="text-4xl font-black text-pink-400 mb-2">১০০%</div>
-                        <div class="text-sm text-gray-400 uppercase tracking-wider">সিকিউর</div>
-                    </div>
-                </div>
+        <div class="app-card" onclick="goToDownload('CapCut Premium', 'v10.5.0', '120MB', 'https://github.com/zaiyan/repo/releases/download/v1/capcut.apk', 'https://img.icons8.com/color/144/capcut.png')">
+            <img src="https://img.icons8.com/color/144/capcut.png" loading="lazy">
+            <div class="app-info">
+                <span class="name">CapCut Premium</span>
+                <span class="category">Video Editor • 120MB</span>
+                <span class="rating">4.8 ★</span>
             </div>
         </div>
-    </section>
 
-    <!-- Categories Section -->
-    <section id="categories" class="py-32 px-8">
-        <div class="max-w-7xl mx-auto">
-            <div class="text-center mb-24 fade-in-up">
-                <h2 class="text-7xl font-black mb-8 neon-text">ক্যাটাগরি</h2>
-                <p class="text-2xl text-gray-300 max-w-3xl mx-auto">তোমার পছন্দের অ্যাপ দ্রুত খুঁজে পাও</p>
+        <div class="app-card" onclick="goToDownload('GTA Kishoreganj', 'v1.0', '1.2GB', 'https://github.com/zaiyan/repo/releases/download/v1/gta.apk', 'https://img.icons8.com/color/144/gta-5.png')">
+            <img src="https://img.icons8.com/color/144/gta-5.png" loading="lazy">
+            <div class="app-info">
+                <span class="name">GTA Kishoreganj</span>
+                <span class="category">Action • 1.2GB</span>
+                <span class="rating">5.0 ★</span>
             </div>
-            
-            <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 2xl:grid-cols-8 gap-6">
-                <!-- 16 Category Chips -->
-                <div class="glass-effect p-10 rounded-4xl hover-lift cursor-pointer group category-chip relative overflow-hidden">
-                    <div class="w-20 h-20 bg-gradient-to-br from-purple-500 to-pink-500 rounded-3xl mx-auto mb-6 flex items-center justify-center group-hover:scale-125 group-hover:rotate-12 transition-all duration-500 shadow-2xl"></div>
-                    <h4 class="font-bold text-2xl mb-3 text-center group-hover:text-purple-300 transition-colors">মিউজিক</h4>
-                    <span class="text-sm text-gray-500 block text-center">12 অ্যাপস</span>
-                    <div class="absolute inset-0 bg-gradient-to-t from-purple-500/20 opacity-0 group-hover:opacity-100 transition-opacity rounded-4xl"></div>
-                </div>
-                <div class="glass-effect p-10 rounded-4xl hover-lift cursor-pointer group category-chip">
-                    <div class="w-20 h-20 bg-gradient-to-br from-red-500 to-orange-500 rounded-3xl mx-auto mb-6 flex items-center justify-center group-hover:scale-125 group-hover:rotate-12"></div>
-                    <h4 class="font-bold text-2xl mb-3 text-center group-hover:text-orange-300">ভিডিও</h4>
-                    <span class="text-sm text-gray-500">15 অ্যাপস</span>
-                </div>
-                <div class="glass-effect p-10 rounded-4xl hover-lift cursor-pointer group category-chip">
-                    <div class="w-20 h-20 bg-gradient-to-br from-yellow-500 to-amber-500 rounded-3xl mx-auto mb-6 flex items-center justify-center group-hover:scale-125 group-hover:rotate-12"></div>
-                    <h4 class="font-bold text-2xl mb-3 text-center group-hover:text-yellow-300">সোশ্যাল</h4>
-                    <span class="text-sm text-gray-500">18 অ্যাপস</span>
-                </div>
-                <div class="glass-effect p-10 rounded-4xl hover-lift cursor-pointer group category-chip">
-                    <div class="w-20 h-20 bg-gradient-to-br from-green-500 to-emerald-500 rounded-3xl mx-auto mb-6 flex items-center justify-center group-hover:scale-125 group-hover:rotate-12"></div>
-                    <h4 class="font-bold text-2xl mb-3 text-center group-hover:text-green-300">গেমস</h4>
-                    <span class="text-sm text-gray-500">25 অ্যাপস</span>
-                </div>
-                <!-- আরো ১২টি ক্যাটাগরি... (Launcher, Tools, Photo, VPN, Launcher, Root, Streaming, Tools, Photo, VPN, Launcher, Root) -->
-                <div class="glass-effect p-10 rounded-4xl hover-lift cursor-pointer group category-chip"><div class="w-20 h-20 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-3xl mx-auto mb-6 group-hover:scale-125 group-hover:rotate-12"></div><h4 class="font-bold text-2xl group-hover:text-blue-300">লঞ্চার</h4><span class="text-sm text-gray-500">8 অ্যাপস</span></div>
-                <div class="glass-effect p-10 rounded-4xl hover-lift cursor-pointer
+        </div>
+
+    </div>
+</main>
+
+<nav class="bottom-nav">
+    <div class="nav-item active"><i class="fas fa-gamepad"></i><span>গেমস</span></div>
+    <div class="nav-item"><i class="fas fa-th"></i><span>অ্যাপস</span></div>
+    <div class="nav-item"><i class="fas fa-arrow-down"></i><span>আপডেট</span></div>
+</nav>
+
+<script>
+    function filterApps() {
+        let input = document.getElementById('searchInput').value.toLowerCase();
+        let cards = document.getElementsByClassName('app-card');
+        for (let card of cards) {
+            let name = card.querySelector('.name').innerText.toLowerCase();
+            card.style.display = name.includes(input) ? "flex" : "none";
+        }
+    }
+
+    function goToDownload(name, ver, size, link, icon) {
+        const url = `download.html?name=${encodeURIComponent(name)}&ver=${ver}&size=${size}&link=${encodeURIComponent(link)}&icon=${encodeURIComponent(icon)}`;
+        window.location.href = url;
+    }
+</script>
+</body>
+</html>
