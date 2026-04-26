@@ -3,55 +3,56 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ZAIYAN Play Store | Premium APK</title>
+    <title>ZAIYAN MODS | Premium Store</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
 
 <header>
+    <div class="logo">ZAIYAN <span>MODS</span></div>
     <div class="search-box">
+        <input type="text" id="searchInput" placeholder="অ্যাপ খুঁজুন..." onkeyup="filterApps()">
         <i class="fas fa-search"></i>
-        <input type="text" id="searchInput" placeholder="অ্যাপ ও গেম খুঁজুন..." onkeyup="filterApps()">
     </div>
 </header>
 
-<div class="tabs">
-    <button class="active">সব</button>
-    <button>গেমস</button>
-    <button>অ্যাপস</button>
-    <button>নতুন</button>
+<div class="hero-banner">
+    <h3>PREMIUM UNLOCKER</h3>
+    <p>সব প্রিমিয়াম অ্যাপ এখন আপনার হাতের মুঠোয়</p>
 </div>
 
 <main class="container">
-    <h2 class="section-title">জনপ্রিয় অ্যাপসমূহ</h2>
+    <div class="section-header">
+        <h2>🔥 টপ মড অ্যাপস</h2>
+        <span class="view-all">সব দেখুন</span>
+    </div>
+    
     <div class="app-grid" id="appGrid">
-        
-        <div class="app-card" onclick="goToDownload('CapCut Premium', 'v10.5.0', '120MB', 'https://github.com/zaiyan/repo/releases/download/v1/capcut.apk', 'https://img.icons8.com/color/144/capcut.png')">
+        <div class="app-card" onclick="goToDownload('CapCut Pro', 'v10.5', '120MB', 'LINK_HERE', 'https://img.icons8.com/color/144/capcut.png')">
+            <div class="badge">PRO</div>
             <img src="https://img.icons8.com/color/144/capcut.png" loading="lazy">
             <div class="app-info">
-                <span class="name">CapCut Premium</span>
-                <span class="category">Video Editor • 120MB</span>
-                <span class="rating">4.8 ★</span>
+                <span class="name">CapCut Pro</span>
+                <span class="stars">⭐⭐⭐⭐⭐</span>
             </div>
         </div>
 
-        <div class="app-card" onclick="goToDownload('GTA Kishoreganj', 'v1.0', '1.2GB', 'https://github.com/zaiyan/repo/releases/download/v1/gta.apk', 'https://img.icons8.com/color/144/gta-5.png')">
+        <div class="app-card" onclick="goToDownload('GTA Kishoreganj', 'v1.0', '1.2GB', 'LINK_HERE', 'https://img.icons8.com/color/144/gta-5.png')">
+            <div class="badge">MOD</div>
             <img src="https://img.icons8.com/color/144/gta-5.png" loading="lazy">
             <div class="app-info">
                 <span class="name">GTA Kishoreganj</span>
-                <span class="category">Action • 1.2GB</span>
-                <span class="rating">5.0 ★</span>
+                <span class="stars">⭐⭐⭐⭐⭐</span>
             </div>
         </div>
-
     </div>
 </main>
 
 <nav class="bottom-nav">
-    <div class="nav-item active"><i class="fas fa-gamepad"></i><span>গেমস</span></div>
-    <div class="nav-item"><i class="fas fa-th"></i><span>অ্যাপস</span></div>
-    <div class="nav-item"><i class="fas fa-arrow-down"></i><span>আপডেট</span></div>
+    <div class="nav-item active"><i class="fas fa-fire"></i><span>হট</span></div>
+    <div class="nav-item"><i class="fas fa-gamepad"></i><span>গেমস</span></div>
+    <div class="nav-item"><i class="fas fa-download"></i><span>ডাউনলোড</span></div>
 </nav>
 
 <script>
@@ -60,7 +61,7 @@
         let cards = document.getElementsByClassName('app-card');
         for (let card of cards) {
             let name = card.querySelector('.name').innerText.toLowerCase();
-            card.style.display = name.includes(input) ? "flex" : "none";
+            card.style.display = name.includes(input) ? "block" : "none";
         }
     }
 
